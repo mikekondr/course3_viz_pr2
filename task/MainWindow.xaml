@@ -1,0 +1,61 @@
+﻿<Window x:Class="task.MainWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:local="clr-namespace:task"
+      mc:Ignorable="d"
+      Title="Вгадай картки" Height="450" Width="1200" Loaded="Window_Loaded" Icon="/free-icon-3d-card-game-10490259.png">
+    <Window.Background>
+        <ImageBrush ImageSource="/img/backgound.jpg" TileMode="Tile"/>
+    </Window.Background>
+
+    <Grid>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="4,0,0,0" TextWrapping="Wrap" 
+                   VerticalAlignment="Top" Width="1200" FontSize="32" FontWeight="Bold" Foreground="#FFFFFFFF"
+                   TextAlignment="Center" Grid.ColumnSpan="3">
+            <TextBlock.Text>
+                Вгадай картки
+            </TextBlock.Text>
+        </TextBlock>
+
+        <TextBlock x:Name="Congrats" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="72" FontWeight="Bold" FontStyle="Italic" Foreground="Yellow" Visibility="Hidden">
+            <TextBlock.Text>
+                Вітаю! Ви виграли!
+            </TextBlock.Text>
+        </TextBlock>
+        <TextBlock x:Name="GameTime" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="36" Foreground="Yellow" Margin="0,150,0,0" Visibility="Hidden">
+            <TextBlock.Text>
+                Час гри: 15 секунд
+            </TextBlock.Text>
+        </TextBlock>
+
+        <!-- Viewport3D визначає поверхню і область вікна, куди проектується сцена. -->
+        <Viewport3D ClipToBounds="True" Width="1200" Height="450" MouseDown="Viewport3D_MouseDown" x:Name="Viewport" Grid.ColumnSpan="3" Margin="0,0,0,-16">
+
+            <!-- Визначаємо положення та напрямок камери. -->
+            <Viewport3D.Camera>
+                <PerspectiveCamera Position="0,-75,300" LookDirection="0,0.25,-1" FieldOfView="45"/>
+            </Viewport3D.Camera>
+
+            <!-- Визначаємо дочірні об'єкти для Viewport3D -->
+            <Viewport3D.Children>
+                <!-- Встановлюємо напрямки та колір джерела освітлення. -->
+                <ModelVisual3D x:Name="Light">
+                    <ModelVisual3D.Content>
+                        <DirectionalLight Color="#FFFFFFFF" Direction="0,0,-1" />
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+            </Viewport3D.Children>
+        </Viewport3D>
+
+        <Button Content="Нова гра" Height="48" HorizontalAlignment="Center" Name="button1" VerticalAlignment="Bottom" Width="150"
+              Click="button1_Click" FontSize="24" Margin="0,0,0,15" Visibility="Hidden">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+    </Grid>
+</Window>
